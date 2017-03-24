@@ -94,7 +94,7 @@ class ShoppingCart extends Component {
         <div className='items'>
           <h2>cart total: <span>${this.state.orderTotal.toFixed(2)}</span></h2>
           <div className='half right'>
-            <a href='#' className='checkout'>I'm ready to checkout</a>
+            <a href='#' className='checkout'>I am ready to checkout</a>
           </div>
           {items}
         </div>
