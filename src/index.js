@@ -1,9 +1,52 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+
+import CartItem from './CartItem'
+
+const items = [
+  {
+    imgUrl: 'https://scene7-secure.targetimg1.com/is/image/Target/39598742?wid=90&hei=90',
+    name: 'Gaiam Kids Yoga Headband - Pink/Blue',
+    price: 27.92
+  },
+  {
+    imgUrl: 'https://scene7-secure.targetimg1.com/is/image/Target/12953828?wid=90&hei=90',
+    name: 'Gaiam Kids Yoga Headband - Pink/Blue',
+    price: 27.92
+  }
+]
 
 class ShoppingCart extends React.Component {
-  render(){
+
+  constructor () {
+    super()
+    this.state = {
+      subtotal: 0
+    }
+  }
+
+//   Build a Shopping Cart component that:
+//
+// Allows the user to add a new item to the cart
+// Each item has a name, cost and quantity
+// Displays each item in the cart, as well as the calculated total of all items cost
+// Allows the user to update the quantity of each item in the cart
+// Allows the user to remove an item from the cart
+// Allows the user to wrap an item as a gift for an incurred cost
+// Calculates the sales tax and adds it to the subtotal of the items to be purchased
+// Bonus:
+//
+// Allows the user to enter a unique promo that applies a pre-designated discount off the total of the cart
+// Your cart should be initialized with a list of predetermined promo codes, and only valid inputed codes receive the discount
+// No promo can be used more than once
+
+  render () {
+    var cartItems = items.map((item, index) => {
+      return (
+        <CartItem key={index} imgUrl={item.imgUrl} name={item.name} price={item.price} />
+      )
+    })
     return (
       <div className='cart'>
         <div className='items'>
@@ -11,44 +54,7 @@ class ShoppingCart extends React.Component {
           <div className='half right'>
             <a href='#' className='checkout'>i'm ready to checkout</a>
           </div>
-          <div className='item'>
-            <img  src='https://scene7-secure.targetimg1.com/is/image/Target/39598742?wid=90&hei=90' />
-            <div className='half'>
-              Gaiam Kids Yoga Headband - Pink/Blue
-            </div>
-            <div className='half'>
-              <span className='circle'>-</span>
-              <span className='pad-left pad-right'>1</span>
-              <span className='circle'>+</span>
-              <strong className='right'>$27.92</strong>
-            </div>
-            <hr />
-            <div>
-              <a href='#'>remove</a><br />
-              <label>
-                <input type='checkbox'/> wrap it for $5.99
-              </label>
-            </div>
-          </div>
-          <div className='item'>
-            <img  src='https://scene7-secure.targetimg1.com/is/image/Target/12953828?wid=90&hei=90' />
-            <div className='half'>
-              Gaiam Kids Yoga Headband - Pink/Blue
-            </div>
-            <div className='half'>
-              <span className='circle'>-</span>
-              <span className='pad-left pad-right'>1</span>
-              <span className='circle'>+</span>
-              <strong className='right'>$27.92</strong>
-            </div>
-            <hr />
-            <div>
-              <a href='#'>remove</a><br />
-              <label>
-                <input type='checkbox'/> wrap it for $5.99
-              </label>
-            </div>
-          </div>
+          {cartItems}
         </div>
         <div className='summary'>
           <h3>order summary</h3>
@@ -65,9 +71,9 @@ class ShoppingCart extends React.Component {
             <strong>estimated tax</strong>
             <strong className='right'>$0.40</strong>
           </div>
-          <hr/>
+          <hr />
           <h3>total <span className='right'>$9.38</span></h3>
-          <hr/>
+          <hr />
           <small>cart number: 1016396673255</small>
         </div>
       </div>
@@ -77,4 +83,4 @@ class ShoppingCart extends React.Component {
 ReactDOM.render(
   <ShoppingCart />,
   document.getElementById('root')
-);
+)
